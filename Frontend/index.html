@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeSpace - Digital Safety Platform for Women & Girls</title>
+    <meta name="description" content="Safety by Design - Building safer digital spaces for women and girls across Africa">
+    <meta name="author" content="Edris Abdella Nuure">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="SafeSpace - Digital Safety Platform">
+    <meta property="og:description" content="Protecting and empowering women and girls through technology">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://ibb.co/RT6rny3B">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-red: #EF4444;
+            --primary-blue: #3B82F6;
+            --primary-green: #10B981;
+            --primary-purple: #8B5CF6;
+            --dark-color: #1F2937;
+            --light-color: #F9FAFB;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #374151;
+            background-color: #ffffff;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #E5E7EB;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-red);
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            color: #4B5563;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-red);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        /* Emergency Button */
+        .emergency-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 25px rgba(239, 68, 68, 0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        .emergency-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 30px rgba(239, 68, 68, 0.4);
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Sections */
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .section-dark {
+            background-color: #F9FAFB;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: #6B7280;
+            margin-bottom: 3rem;
+        }
+        
+        /* Cards */
+        .feature-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            border: 1px solid #E5E7EB;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-red);
+        }
+        
+        /* Developer Section */
+        .developer-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .developer-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1.5rem;
+            border: 5px solid var(--primary-red);
+        }
+        
+        .social-links {
+            margin-top: 1.5rem;
+        }
+        
+        .social-link {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-red);
+            color: white;
+            border-radius: 50%;
+            line-height: 40px;
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: var(--dark-color);
+            transform: translateY(-3px);
+        }
+        
+        /* Forms */
+        .auth-form {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .form-control {
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            border: 1px solid #D1D5DB;
+            margin-bottom: 1rem;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+        
+        .btn-primary {
+            background: var(--primary-red);
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: #DC2626;
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 3rem 0;
+        }
+        
+        /* Utility Classes */
+        .gradient-text {
+            background: linear-gradient(135deg, #EF4444 0%, #8B5CF6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .text-primary {
+            color: var(--primary-red) !important;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+            
+            .emergency-btn {
+                bottom: 1rem;
+                right: 1rem;
+                width: 60px;
+                height: 60px;
+                font-size: 1.25rem;
+            }
+        }
+        
+        /* Modal */
+        .modal-content {
+            border-radius: 1rem;
+            border: none;
+        }
+        
+        .modal-header {
+            border-bottom: 1px solid #E5E7EB;
+            padding: 1.5rem;
+        }
+        
+        .modal-body {
+            padding: 1.5rem;
+        }
+        
+        .modal-footer {
+            border-top: 1px solid #E5E7EB;
+            padding: 1.5rem;
+        }
+        
+        /* Alert Types */
+        .alert-option {
+            border: 2px solid #E5E7EB;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .alert-option:hover, .alert-option.active {
+            border-color: var(--primary-red);
+            background: rgba(239, 68, 68, 0.05);
+        }
+        
+        /* Dashboard */
+        .stats-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--primary-red);
+        }
+        
+        .stats-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-red);
+        }
+        
+        /* Map Container */
+        .map-container {
+            height: 300px;
+            border-radius: 1rem;
+            overflow: hidden;
+            background: #E5E7EB;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6B7280;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <i class="fas fa-shield-alt"></i> SafeSpace
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#developer">Developer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showLoginModal()">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showRegisterModal()">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="hero-title">Safety by Design</h1>
+                    <p class="hero-subtitle">Building safer digital spaces for women and girls across Africa through technology, community, and courage.</p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <button class="btn btn-light btn-lg" onclick="showRegisterModal()">
+                            <i class="fas fa-user-plus"></i> Get Started
+                        </button>
+                        <button class="btn btn-outline-light btn-lg" onclick="showLoginModal()">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <div class="map-container mt-4 mt-lg-0">
+                        <i class="fas fa-map-marked-alt fa-3x mb-3"></i>
+                        <p>Live Safety Map</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">How SafeSpace Protects You</h2>
+                <p class="section-subtitle">Integrated safety features designed for your peace of mind</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <h4>Emergency Alerts</h4>
+                        <p>Instant one-touch emergency notifications to your trusted contacts with live location sharing.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4>Safety Network</h4>
+                        <p>Build your personal safety network with trusted friends and family members.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h4>Privacy First</h4>
+                        <p>Your data is encrypted and secure. We prioritize your privacy above all else.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h4>Safety Resources</h4>
+                        <p>Access educational materials, hotlines, and safety guides tailored for your region.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section section-dark">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="section-title">About SafeSpace</h2>
+                    <p class="lead">SafeSpace is a comprehensive digital safety platform designed specifically for women and girls in Africa, addressing the unique challenges they face in digital spaces.</p>
+                    <p>Built for the <strong>Power Learn Project Hackathon</strong> under the theme "Safety by Design", our platform integrates safety features directly into the user experience rather than adding them as an afterthought.</p>
+                    <div class="mt-4">
+                        <h5>Key Focus Areas:</h5>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-primary me-2"></i> Emergency response system</li>
+                            <li><i class="fas fa-check text-primary me-2"></i> Location-based safety alerts</li>
+                            <li><i class="fas fa-check text-primary me-2"></i> Educational resources</li>
+                            <li><i class="fas fa-check text-primary me-2"></i> Community support network</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="map-container">
+                        <i class="fas fa-globe-africa fa-3x mb-3"></i>
+                        <p>Africa Safety Coverage Map</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Developer Section -->
+    <section id="developer" class="section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="developer-card">
+                        <img src="https://ibb.co/RT6rny3B" alt="Edris Abdella Nuure" class="developer-img" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiBmaWxsPSIjRUY0NDQ0Ii8+Cjx0ZXh0IHg9Ijc1IiB5PSI4MCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+RUE8L3RleHQ+Cjwvc3ZnPgo='">
+                        <h3>Edris Abdella Nuure</h3>
+                        <p class="text-muted">Full Stack Developer & Safety Advocate</p>
+                        <p class="mb-3">Passionate about creating technology that makes a real difference in people's lives, especially for women and girls in Africa who face unique digital safety challenges.</p>
+                        
+                        <div class="row text-start">
+                            <div class="col-md-6">
+                                <p><i class="fas fa-map-marker-alt text-primary me-2"></i> <strong>Location:</strong> Dire Dawa, Ethiopia</p>
+                                <p><i class="fas fa-envelope text-primary me-2"></i> <strong>Email:</strong> edrisabdella178@gmail.com</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><i class="fas fa-phone text-primary me-2"></i> <strong>Phone:</strong> +251905131051</p>
+                                <p><i class="fas fa-link text-primary me-2"></i> <strong>GitHub:</strong> Edrisabdella</p>
+                            </div>
+                        </div>
+                        
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/edris-abdella-7aa521177" class="social-link" target="_blank">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://github.com/Edrisabdella/Safety-by-Design_Building-Safe-Digital-Spaces-for-All-Women.git" class="social-link" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="mailto:edrisabdella178@gmail.com" class="social-link">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5><i class="fas fa-shield-alt"></i> SafeSpace</h5>
+                    <p>Building safer digital spaces for women and girls across Africa through technology and community.</p>
+                </div>
+                <div class="col-lg-2 col-6 mb-4 mb-lg-0">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home" class="text-light text-decoration-none">Home</a></li>
+                        <li><a href="#features" class="text-light text-decoration-none">Features</a></li>
+                        <li><a href="#about" class="text-light text-decoration-none">About</a></li>
+                        <li><a href="#developer" class="text-light text-decoration-none">Developer</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-6 mb-4 mb-lg-0">
+                    <h5>Emergency Contacts</h5>
+                    <ul class="list-unstyled">
+                        <li>🚨 Police: 991</li>
+                        <li>🏥 Ambulance: 907</li>
+                        <li>🔥 Fire: 939</li>
+                        <li>👩 Women's Help: +251116677889</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h5>Connect With Us</h5>
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="#" class="text-light"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 bg-light">
+            <div class="text-center">
+                <p>&copy; 2024 SafeSpace. Built with ❤️ by Edris Abdella Nuure for Power Learn Project Hackathon.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Emergency Button -->
+    <button class="emergency-btn" onclick="showEmergencyModal()">
+        <i class="fas fa-bell"></i>
+    </button>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Login to SafeSpace</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="loginEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="loginPassword" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Remember me</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <a href="#" class="text-decoration-none" onclick="showForgotPasswordModal()">Forgot your password?</a>
+                    </div>
+                    <hr class="my-3">
+                    <div class="text-center">
+                        <p class="mb-0">Don't have an account? <a href="#" class="text-decoration-none" onclick="showRegisterModal()">Register here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create SafeSpace Account</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="registerForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="firstName" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="lastName" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerEmail" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="registerEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="registerPassword" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirmPassword" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="agreeTerms" required>
+                            <label class="form-check-label" for="agreeTerms">I agree to the <a href="#" class="text-decoration-none">Terms & Conditions</a></label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Create Account</button>
+                    </form>
+                    <hr class="my-3">
+                    <div class="text-center">
+                        <p class="mb-0">Already have an account? <a href="#" class="text-decoration-none" onclick="showLoginModal()">Login here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Emergency Modal -->
+    <div class="modal fade" id="emergencyModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger"><i class="fas fa-exclamation-triangle"></i> Emergency Alert</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-warning">
+                        <strong>Warning:</strong> This will notify your emergency contacts with your current location.
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Alert Type</label>
+                        <div class="alert-option active" onclick="selectAlertType(this, 'immediate-danger')">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-exclamation-triangle text-danger me-3 fa-lg"></i>
+                                <div>
+                                    <h6 class="mb-1">Immediate Danger</h6>
+                                    <p class="mb-0 text-muted">I am in immediate physical danger</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="alert-option" onclick="selectAlertType(this, 'suspicious-activity')">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-eye text-warning me-3 fa-lg"></i>
+                                <div>
+                                    <h6 class="mb-1">Suspicious Activity</h6>
+                                    <p class="mb-0 text-muted">I notice suspicious activity around me</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="alert-option" onclick="selectAlertType(this, 'safety-check')">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-check-circle text-success me-3 fa-lg"></i>
+                                <div>
+                                    <h6 class="mb-1">Safety Check-in</h6>
+                                    <p class="mb-0 text-muted">Let my contacts know I'm safe</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="emergencyMessage" class="form-label">Additional Message (Optional)</label>
+                        <textarea class="form-control" id="emergencyMessage" rows="3" placeholder="Describe your situation..."></textarea>
+                    </div>
+                    
+                    <div class="d-flex gap-2">
+                        <button type="button" class="btn btn-outline-secondary flex-fill" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger flex-fill" onclick="sendEmergencyAlert()">
+                            <i class="fas fa-paper-plane"></i> Send Alert
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div class="modal fade" id="forgotPasswordModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Reset Your Password</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Enter your email address and we'll send you a link to reset your password.</p>
+                    <form id="forgotPasswordForm">
+                        <div class="mb-3">
+                            <label for="forgotEmail" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="forgotEmail" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Send Reset Link</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <a href="#" class="text-decoration-none" onclick="showLoginModal()">Back to Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Modal Management
+        function showLoginModal() {
+            const registerModal = bootstrap.Modal.getInstance(document.getElementById('registerModal'));
+            if (registerModal) registerModal.hide();
+            
+            const forgotModal = bootstrap.Modal.getInstance(document.getElementById('forgotPasswordModal'));
+            if (forgotModal) forgotModal.hide();
+            
+            const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+            loginModal.show();
+        }
+        
+        function showRegisterModal() {
+            const loginModal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
+            if (loginModal) loginModal.hide();
+            
+            const registerModal = new bootstrap.Modal(document.getElementById('registerModal'));
+            registerModal.show();
+        }
+        
+        function showEmergencyModal() {
+            const emergencyModal = new bootstrap.Modal(document.getElementById('emergencyModal'));
+            emergencyModal.show();
+        }
+        
+        function showForgotPasswordModal() {
+            const loginModal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
+            if (loginModal) loginModal.hide();
+            
+            const forgotModal = new bootstrap.Modal(document.getElementById('forgotPasswordModal'));
+            forgotModal.show();
+        }
+        
+        // Alert Type Selection
+        function selectAlertType(element, type) {
+            document.querySelectorAll('.alert-option').forEach(opt => {
+                opt.classList.remove('active');
+            });
+            element.classList.add('active');
+        }
+        
+        // Form Handling
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Login functionality would be implemented with backend integration');
+            bootstrap.Modal.getInstance(document.getElementById('loginModal')).hide();
+        });
+        
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Registration functionality would be implemented with backend integration');
+            bootstrap.Modal.getInstance(document.getElementById('registerModal')).hide();
+        });
+        
+        document.getElementById('forgotPasswordForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Password reset link would be sent to your email');
+            bootstrap.Modal.getInstance(document.getElementById('forgotPasswordModal')).hide();
+        });
+        
+        // Emergency Alert Function
+        function sendEmergencyAlert() {
+            const alertType = document.querySelector('.alert-option.active h6').textContent;
+            const message = document.getElementById('emergencyMessage').value || 'No additional message';
+            
+            // Simulate getting location
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        const lat = position.coords.latitude;
+                        const lng = position.coords.longitude;
+                        
+                        alert(`Emergency alert sent!\n\nType: ${alertType}\nLocation: ${lat.toFixed(4)}, ${lng.toFixed(4)}\nMessage: ${message}\n\nYour emergency contacts have been notified.`);
+                        bootstrap.Modal.getInstance(document.getElementById('emergencyModal')).hide();
+                    },
+                    function(error) {
+                        alert(`Emergency alert sent!\n\nType: ${alertType}\nMessage: ${message}\n\nNote: Location could not be accessed. Your emergency contacts have been notified.`);
+                        bootstrap.Modal.getInstance(document.getElementById('emergencyModal')).hide();
+                    }
+                );
+            } else {
+                alert(`Emergency alert sent!\n\nType: ${alertType}\nMessage: ${message}\n\nNote: Geolocation not supported. Your emergency contacts have been notified.`);
+                bootstrap.Modal.getInstance(document.getElementById('emergencyModal')).hide();
+            }
+        }
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+        
+        // Active nav link highlighting
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
