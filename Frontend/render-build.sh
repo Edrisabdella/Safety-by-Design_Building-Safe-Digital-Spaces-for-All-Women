@@ -1,47 +1,29 @@
 #!/bin/bash
 
-echo "🚀 Starting SafeSpace Frontend Build Process on Render..."
+echo "🚀 Starting SafeSpace Frontend Build on Render..."
 
-# Navigate to frontend directory
-cd frontend
+# Set proper permissions
+chmod -R 755 node_modules/.bin/
 
 # Install dependencies
 echo "📦 Installing dependencies..."
 npm install
 
-# Check if installation was successful
-if [ $? -ne 0 ]; then
-    echo "❌ npm install failed"
-    exit 1
-fi
-
-# Create production environment file
-echo "🔧 Creating production environment configuration..."
+# Create production environment
 cat > .env.production << EOL
 VITE_API_URL=https://safespace-backend.onrender.com
 VITE_APP_NAME=SafeSpace
-VITE_NODE_ENV=production
 EOL
 
 # Build the application
-echo "🏗 Building React application..."
+echo "🏗 Building application..."
 npm run build
 
-# Check if build was successful
-if [ $? -ne 0 ]; then
-    echo "❌ Build failed"
-    exit 1
-fi
-
-# Verify build output
+# Verify build
 if [ -d "dist" ]; then
-    echo "✅ Build completed successfully!"
-    echo "📁 Build output: dist/"
-    echo "📊 Build size:"
-    du -sh dist/
+    echo "✅ Build successful!"
+    ls -la dist/
 else
-    echo "❌ Build output not found"
+    echo "❌ Build failed - no dist directory"
     exit 1
 fi
-
-echo "🎉 Frontend build process completed!"
